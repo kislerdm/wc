@@ -17,7 +17,7 @@ sequenceDiagram
     web->>+http: Initial call
     http->>-web: Returns HTML page with embedded JS
     
-    web->>+ws: Sends emmty message
+    web->>+ws: Sends empty message
     ws->>-web: Returns current timestamp every 200 ms. 
 ```
 

@@ -15,9 +15,9 @@ sequenceDiagram
     participant ws as "/ws" endpoint
     
     web->>+http: Initial call
-    http->>-web: Returns HTML page
+    http->>-web: Returns HTML page with embedded JS
     
-    web->>+ws: Send WS message
+    web->>+ws: Sends emmty message
     ws->>-web: Returns current timestamp every 200 ms. 
 ```
 

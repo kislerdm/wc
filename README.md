@@ -4,9 +4,9 @@ The project illustrates a use case of the [websocket](https://www.rfc-editor.org
 
 ## Modus Operandi
 
-- The client app sends the request to the server;
-- Upon successful handshake, the server pushes current UTC timestamp as ISO string in perpetual loop every 200 ms.;
-- Client app tails the last 30 server responses.
+- The client app sends empty request to the server.
+- Upon successful handshake, the server pushes current UTC timestamp formated as the ISO string. It's done perpetually with the delay of 200 ms. between two consecutive responses.
+- Client app tails and displays 20 most recent responses.
 
 ```mermaid
 sequenceDiagram

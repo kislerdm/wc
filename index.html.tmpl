@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>WS Demo</title>
+    <style>
+        header, footer, h2 {
+            text-align: center;
+            alignment: center;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+        }
+        h2 {
+            font-size: 14pt;
+            margin-bottom: 20px;
+        }
+        .btn {
+            margin: 20px;
+            width: 100px;
+        }
+        #output {
+            margin: 0;
+            position: absolute;
+            left: 50%;
+            top: 260px;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Communication over <a href="https://www.wallarm.com/what/a-simple-explanation-of-what-a-websocket-is"
+                              target="_blank" rel="noopener noreffer">Web-socket Protocol</a> Demo</h1>
+</header>
+<footer><p id="foot"></p></footer>
+
+<h2>Server Response:</h2>
+<pre id="output"></pre>
+
+<script>
+    const date = new Date();
+    const d = document.getElementById("foot");
+    d.innerHTML = `${date.getFullYear().toString()} &#169; <a href="https://www.dkisler.com">D. Kisler</a>`;
+
+    const port = {{.}};
+    const socket = new WebSocket(`ws://localhost:${port}/ws`);
+    const output = document.getElementById("output");
+
+    const maxItems = 20;
+    let v = [];
+    socket.onmessage = function (e) {
+        const el = e.data;
+        if (v.length < maxItems) {
+            v.push(el);
+        } else {
+            v = [...v.slice(1), el];
+        }
+        output.innerHTML = v.join("\n");
+    };
+    socket.send(null);
+</script>
+
+</body>
+</html>
